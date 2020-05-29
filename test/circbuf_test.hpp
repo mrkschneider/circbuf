@@ -1,6 +1,7 @@
 #include <cxxtest/TestSuite.h>
 
 #include <circbuf.h>
+#include <cassert>
 
 class CircbufTestSuite : public CxxTest::TestSuite {
 
@@ -16,7 +17,6 @@ public:
     if(fd == NULL) throw "File read error";
     b = (char*)malloc(sizeof(char)*size);
     c = circbuf_create(b,size,4,fd);
-    circbuf_fill(c);
   }
 
   void tearDown(){
@@ -47,6 +47,48 @@ public:
     TS_ASSERT_EQUALS('l',h[-4]);
     TS_ASSERT_EQUALS('s',h[3]);
     circbuf_print(c);
+
+    h = circbuf_head_forward(c,4);
+    circbuf_print(c);
+    h = circbuf_head_forward(c,4);
+    circbuf_print(c);
+    h = circbuf_head_forward(c,4);
+    circbuf_print(c);
+    TS_ASSERT_EQUALS('\n',h[0]);
+
+    h = circbuf_head_forward(c,4);
+    circbuf_print(c);
+    TS_ASSERT_EQUALS('\n',h[0]);
+
+    h = circbuf_head_forward(c,3);
+    circbuf_print(c);
+    TS_ASSERT_EQUALS('\n',h[0]);
+  }
+
+  void test_circbuf_head_forward_error(){
+    char* h = circbuf_head_forward(c,0);
+    TS_ASSERT(h);
+
+    h = circbuf_head_forward(c,-1);
+    TS_ASSERT(!h);
+
+    h = circbuf_head_forward(c,5);
+    TS_ASSERT(!h);
+
+  }
+
+  void test_circbuf_create(){
+    circbuf* c = circbuf_create(b,12,4,fd);
+    TS_ASSERT(c);
+
+    c = circbuf_create(NULL,12,4,fd);
+    TS_ASSERT(!c);
+
+    c = circbuf_create(b,12,4,NULL);
+    TS_ASSERT(!c);
+
+    c = circbuf_create(b,8,4,fd);
+    TS_ASSERT(!c);
   }
 
 };

@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
+#include <string.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -18,12 +20,17 @@ typedef struct circbuf {
   byte finished;
 } circbuf;
 
+#define CIRCBUF_ASSERT(expression,return_value) \
+  if(!(expression)){							\
+    fprintf(stderr,"Assertion failed: '%s' of %s at %s:%d\n",		\
+	    #expression,__func__,__FILE__,__LINE__);			\
+    if(errno) perror("Error: ");					\
+    return return_value;						\
+  }
+
 circbuf* circbuf_create(char* bytes, uint size, uint read_size, FILE* fd);
 void circbuf_free(circbuf* buf);
-
-void circbuf_print(circbuf* c);
-uint circbuf_fill(circbuf* buf);
-void circbuf_rewind(circbuf* buf);
+int circbuf_print(circbuf* c);
 char* circbuf_head_forward(circbuf* buf, uint n);
 
 #ifdef __cplusplus
