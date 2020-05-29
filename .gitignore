@@ -1,0 +1,6 @@
+testrunner
+*.swp
+*.pdf
+*.o
+*.a
+*~
