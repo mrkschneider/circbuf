@@ -5,3 +5,4 @@ testrunner
 *.a
 *~
 *#
+test/tests.cpp

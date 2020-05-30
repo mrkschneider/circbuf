@@ -29,78 +29,78 @@ public:
     char* h = circbuf_head_forward(c,0);
     TS_ASSERT_EQUALS('a',h[0]);
     TS_ASSERT_EQUALS('\0',h[-4]);
-    circbuf_print(c);
+    //circbuf_print(c);
     h = circbuf_head_forward(c,4);
-    circbuf_print(c);
+    //circbuf_print(c);
     TS_ASSERT_EQUALS('e',h[0]);
     TS_ASSERT_EQUALS('a',h[-4]);
     h = circbuf_head_forward(c,4);
-    circbuf_print(c);
+    //circbuf_print(c);
     TS_ASSERT_EQUALS('i',h[0]);
     TS_ASSERT_EQUALS('e',h[-4]);
     h = circbuf_head_forward(c,4);
-    circbuf_print(c);
+    //circbuf_print(c);
     TS_ASSERT_EQUALS('m',h[0]);
     TS_ASSERT_EQUALS('i',h[-4]);
     h = circbuf_head_forward(c,3);
     TS_ASSERT_EQUALS('p',h[0]);
     TS_ASSERT_EQUALS('l',h[-4]);
     TS_ASSERT_EQUALS('s',h[3]);
-    circbuf_print(c);
+    //circbuf_print(c);
 
     h = circbuf_head_forward(c,4);
-    circbuf_print(c);
+    //circbuf_print(c);
     h = circbuf_head_forward(c,4);
-    circbuf_print(c);
+    //circbuf_print(c);
     h = circbuf_head_forward(c,4);
-    circbuf_print(c);
+    //circbuf_print(c);
     TS_ASSERT_EQUALS('\n',h[0]);
 
     h = circbuf_head_forward(c,4);
-    circbuf_print(c);
+    //circbuf_print(c);
     TS_ASSERT_EQUALS('\n',h[0]);
 
     h = circbuf_head_forward(c,3);
-    circbuf_print(c);
+    //circbuf_print(c);
     TS_ASSERT_EQUALS('\n',h[0]);
   }
 
   void test_circbuf_head_forward_2(){
     char* h = circbuf_head_forward(c,1);
     TS_ASSERT_EQUALS('b',h[0]);
-    circbuf_print(c);
+    //circbuf_print(c);
     h = circbuf_head_forward(c,2);
-    circbuf_print(c);
+    //circbuf_print(c);
     TS_ASSERT_EQUALS('d',h[0]);
     TS_ASSERT_EQUALS('a',h[-3]);
     h = circbuf_head_forward(c,3);
-    circbuf_print(c);
+    //circbuf_print(c);
     TS_ASSERT_EQUALS('g',h[0]);
     TS_ASSERT_EQUALS('c',h[-4]);
     h = circbuf_head_forward(c,1);
-    circbuf_print(c);
+    //circbuf_print(c);
     TS_ASSERT_EQUALS('h',h[0]);
     TS_ASSERT_EQUALS('d',h[-4]);
     h = circbuf_head_forward(c,3);
     TS_ASSERT_EQUALS('k',h[0]);
     TS_ASSERT_EQUALS('g',h[-4]);
     TS_ASSERT_EQUALS('n',h[3]);
-    circbuf_print(c);
+    //circbuf_print(c);
 
     h = circbuf_head_forward(c,4);
-    circbuf_print(c);
+    //circbuf_print(c);
     h = circbuf_head_forward(c,4);
-    circbuf_print(c);
+    //circbuf_print(c);
     h = circbuf_head_forward(c,4);
-    circbuf_print(c);
+    //circbuf_print(c);
     TS_ASSERT_EQUALS('w',h[0]);
 
     h = circbuf_head_forward(c,3);
-    circbuf_print(c);
+    //circbuf_print(c);
     TS_ASSERT_EQUALS('z',h[0]);
 
     h = circbuf_head_forward(c,3);
-    circbuf_print(c);
+    //circbuf_print(c);
     TS_ASSERT_EQUALS('\n',h[0]);
   }
 
