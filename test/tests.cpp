@@ -26,7 +26,7 @@ bool suite_CircbufTestSuite_init = false;
 static CircbufTestSuite suite_CircbufTestSuite;
 
 static CxxTest::List Tests_CircbufTestSuite = { 0, 0 };
-CxxTest::StaticSuiteDescription suiteDescription_CircbufTestSuite( "test/circbuf_test.hpp", 6, "CircbufTestSuite", suite_CircbufTestSuite, Tests_CircbufTestSuite );
+CxxTest::StaticSuiteDescription suiteDescription_CircbufTestSuite( "test/circbuf_test.hpp", 5, "CircbufTestSuite", suite_CircbufTestSuite, Tests_CircbufTestSuite );
 
 static class TestDescription_suite_CircbufTestSuite_test_circbuf_head_forward : public CxxTest::RealTestDescription {
 public:
@@ -34,15 +34,21 @@ public:
  void runTest() { suite_CircbufTestSuite.test_circbuf_head_forward(); }
 } testDescription_suite_CircbufTestSuite_test_circbuf_head_forward;
 
+static class TestDescription_suite_CircbufTestSuite_test_circbuf_head_forward_2 : public CxxTest::RealTestDescription {
+public:
+ TestDescription_suite_CircbufTestSuite_test_circbuf_head_forward_2() : CxxTest::RealTestDescription( Tests_CircbufTestSuite, suiteDescription_CircbufTestSuite, 68, "test_circbuf_head_forward_2" ) {}
+ void runTest() { suite_CircbufTestSuite.test_circbuf_head_forward_2(); }
+} testDescription_suite_CircbufTestSuite_test_circbuf_head_forward_2;
+
 static class TestDescription_suite_CircbufTestSuite_test_circbuf_head_forward_error : public CxxTest::RealTestDescription {
 public:
- TestDescription_suite_CircbufTestSuite_test_circbuf_head_forward_error() : CxxTest::RealTestDescription( Tests_CircbufTestSuite, suiteDescription_CircbufTestSuite, 68, "test_circbuf_head_forward_error" ) {}
+ TestDescription_suite_CircbufTestSuite_test_circbuf_head_forward_error() : CxxTest::RealTestDescription( Tests_CircbufTestSuite, suiteDescription_CircbufTestSuite, 107, "test_circbuf_head_forward_error" ) {}
  void runTest() { suite_CircbufTestSuite.test_circbuf_head_forward_error(); }
 } testDescription_suite_CircbufTestSuite_test_circbuf_head_forward_error;
 
 static class TestDescription_suite_CircbufTestSuite_test_circbuf_create : public CxxTest::RealTestDescription {
 public:
- TestDescription_suite_CircbufTestSuite_test_circbuf_create() : CxxTest::RealTestDescription( Tests_CircbufTestSuite, suiteDescription_CircbufTestSuite, 80, "test_circbuf_create" ) {}
+ TestDescription_suite_CircbufTestSuite_test_circbuf_create() : CxxTest::RealTestDescription( Tests_CircbufTestSuite, suiteDescription_CircbufTestSuite, 119, "test_circbuf_create" ) {}
  void runTest() { suite_CircbufTestSuite.test_circbuf_create(); }
 } testDescription_suite_CircbufTestSuite_test_circbuf_create;
 
