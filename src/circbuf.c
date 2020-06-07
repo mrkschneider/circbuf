@@ -81,7 +81,10 @@ int circbuf_print(circbuf* c){
   return 0;
 }
 
-
+char* circbuf_head(circbuf* buf){
+  CIRCBUF_CHECK(buf,NULL);
+  return buf->bytes + buf->pos;
+}
 
 char* circbuf_head_forward(circbuf* buf, uint n){
   CIRCBUF_CHECK(buf,NULL);

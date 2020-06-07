@@ -31,6 +31,7 @@ typedef struct circbuf {
 circbuf* circbuf_create(char* bytes, uint size, uint read_size, FILE* fd);
 void circbuf_free(circbuf* buf);
 int circbuf_print(circbuf* buf);
+char* circbuf_head(circbuf* buf);
 char* circbuf_head_forward(circbuf* buf, uint n);
 
 #ifdef __cplusplus

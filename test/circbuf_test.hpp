@@ -25,6 +25,22 @@ public:
     circbuf_free(c);
   }
 
+  void test_circbuf_head(){
+    TS_ASSERT_EQUALS(circbuf_head(c), circbuf_head_forward(c,0));
+    TS_ASSERT_EQUALS(circbuf_head(c),b+read_size);
+    
+    circbuf_head_forward(c,2);
+    TS_ASSERT_EQUALS(circbuf_head(c),circbuf_head_forward(c,0));
+    TS_ASSERT_EQUALS(circbuf_head(c),b+read_size+2);
+  }
+
+  void test_circbuf_head_error(){
+    TS_ASSERT(circbuf_head(c));
+
+    TS_ASSERT(!circbuf_head(NULL));
+
+  }
+
   void test_circbuf_head_forward(){
     char* h = circbuf_head_forward(c,0);
     TS_ASSERT_EQUALS('a',h[0]);
