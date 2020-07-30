@@ -70,18 +70,11 @@ public:
     //circbuf_print(c);
     h = circbuf_head_forward(c,4);
     //circbuf_print(c);
-    TS_ASSERT_EQUALS('\n',h[0]);
+    TS_ASSERT_EQUALS(-1,h[0]);
 
     h = circbuf_head_forward(c,4);
     //circbuf_print(c);
-    TS_ASSERT_EQUALS('\n',h[0]);
-
-    h = circbuf_head_forward(c,3);
-    circbuf_print(c);
-    TS_ASSERT_EQUALS('\n',h[0]);
-
-    TS_ASSERT_EQUALS(-1,h[1]);
-    TS_ASSERT_EQUALS(-1,h[2]);
+    TS_ASSERT_EQUALS(-1,h[0]);
   }
 
   void test_circbuf_head_forward_2(){
@@ -120,10 +113,7 @@ public:
 
     h = circbuf_head_forward(c,3);
     //circbuf_print(c);
-    TS_ASSERT_EQUALS('\n',h[0]);
-
-    TS_ASSERT_EQUALS(-1,h[1]);
-    TS_ASSERT_EQUALS(-1,h[2]);
+    TS_ASSERT_EQUALS(-1,h[0]);
   }
 
   void test_circbuf_head_forward_error(){

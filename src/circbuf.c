@@ -17,8 +17,10 @@ static int circbuf_fill(circbuf* buf){
   if(n_read < read_size) {
     buf->finished = 1;
     memset(bytes + new_pos,-1,buf->size - new_pos);
+    buf->read_pos = buf->size;
+  } else {
+    buf->read_pos = new_pos;
   }
-  buf->read_pos = new_pos;
   return n_read;
 }
 
