@@ -13,8 +13,12 @@ static int circbuf_fill(circbuf* buf){
   char* bytes = buf->bytes;
   CIRCBUF_CHECK(pos + read_size - 1 < buf->size,-1);
   uint n_read = fread(bytes+pos,(size_t)1,read_size,buf->fd);
-  if(n_read < read_size) buf->finished = 1;
-  buf->read_pos = pos + n_read;
+  uint new_pos = pos + n_read;
+  if(n_read < read_size) {
+    buf->finished = 1;
+    memset(bytes + new_pos,-1,buf->size - new_pos);
+  }
+  buf->read_pos = new_pos;
   return n_read;
 }
 
