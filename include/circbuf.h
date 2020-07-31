@@ -20,6 +20,7 @@ typedef struct circbuf {
   byte finished;
 } circbuf;
 
+#ifdef DEBUG
 #define CIRCBUF_CHECK(expression,return_value) \
   if(!(expression)){							\
     fprintf(stderr,"circbuf check failed: '%s' in %s at %s:%d\n",	\
@@ -27,6 +28,9 @@ typedef struct circbuf {
     if(errno) perror("Error: ");					\
     return return_value;						\
   }
+#else
+#define CIRCBUF_CHECK(expression,return_value) (void)0;
+#endif
 
 circbuf* circbuf_create(char* bytes, uint size, uint read_size, FILE* fd);
 void circbuf_free(circbuf* buf);
