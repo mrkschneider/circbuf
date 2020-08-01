@@ -6,7 +6,6 @@
 
 static int circbuf_fill(circbuf* buf){
   CIRCBUF_CHECK(buf,-1);
-  if(buf->finished) return 0;
 
   uint pos = buf->read_pos;
   uint read_size = buf->read_size;
@@ -14,20 +13,16 @@ static int circbuf_fill(circbuf* buf){
 
   CIRCBUF_CHECK(pos + read_size - 1 < buf->size,-1);
   uint n_read = fread(bytes+pos,(size_t)1,read_size,buf->fd);
-  uint new_pos = pos + n_read;
   if(n_read < read_size) {
     buf->finished = 1;
-    memset(bytes + new_pos,-1,buf->size - new_pos);
-    buf->read_pos = buf->size;
-  } else {
-    buf->read_pos = new_pos;
+    memset(bytes + pos + n_read,-1,read_size - n_read);
   }
+  buf->read_pos = pos + read_size;
   return n_read;
 }
 
 static int circbuf_rewind(circbuf* buf, uint start){
   CIRCBUF_CHECK(buf,-1);
-  if(buf->finished) return 0;
 
   uint size = buf->size;
   char* bytes = buf->bytes;
@@ -107,15 +102,10 @@ char* circbuf_head_forward(circbuf* buf, uint n){
 
   uint pos = buf->pos;
   pos += n;
-  //CIRCBUF_CHECK(pos < size,NULL);
 
   if(pos + buf->read_size - 1 >= buf->read_pos){
     int rc = circbuf_fill(buf); // Does not change buf->pos
     CIRCBUF_CHECK(rc >= 0, NULL);
-  }
-
-  if(pos >= buf->read_pos){
-    pos = buf->read_pos - 1;
   }
 
   buf->pos = pos;

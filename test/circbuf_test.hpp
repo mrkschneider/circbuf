@@ -75,6 +75,14 @@ public:
     h = circbuf_head_forward(c,4);
     //circbuf_print(c);
     TS_ASSERT_EQUALS(-1,h[0]);
+
+    h = circbuf_head_forward(c,4);
+    //circbuf_print(c);
+    TS_ASSERT_EQUALS(-1,h[0]);
+
+    h = circbuf_head_forward(c,4);
+    //circbuf_print(c);
+    TS_ASSERT_EQUALS(-1,h[0]);
   }
 
   void test_circbuf_head_forward_2(){
@@ -110,6 +118,14 @@ public:
     h = circbuf_head_forward(c,3);
     //circbuf_print(c);
     TS_ASSERT_EQUALS('z',h[0]);
+
+    h = circbuf_head_forward(c,3);
+    //circbuf_print(c);
+    TS_ASSERT_EQUALS(-1,h[0]);
+
+    h = circbuf_head_forward(c,3);
+    //circbuf_print(c);
+    TS_ASSERT_EQUALS(-1,h[0]);
 
     h = circbuf_head_forward(c,3);
     //circbuf_print(c);
