@@ -15,7 +15,7 @@ static int circbuf_fill(circbuf* buf){
   uint n_read = fread(bytes+pos,(size_t)1,read_size,buf->fd);
   if(n_read < read_size) {
     buf->finished = 1;
-    memset(bytes + pos + n_read,-1,read_size - n_read);
+    memset(bytes + pos + n_read,'\0',read_size - n_read);
   }
   buf->read_pos = pos + read_size;
   return n_read;
