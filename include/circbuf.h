@@ -7,20 +7,17 @@
 extern "C" {
 #endif
 
-typedef unsigned char byte;
-typedef unsigned int uint;
-
 typedef struct circbuf {
   char* bytes;
-  uint pos;
-  uint read_pos;
-  uint read_size;
-  uint size;
+  size_t pos;
+  size_t read_pos;
+  size_t read_size;
+  size_t size;
   FILE* fd;
-  byte finished;
+  int finished;
 } circbuf;
 
-#ifdef DEBUG
+#ifdef CIRCBUF_DEBUG
 #define CIRCBUF_CHECK(expression,return_value) \
   if(!(expression)){							\
     fprintf(stderr,"circbuf check failed: '%s' in %s at %s:%d\n",	\
@@ -29,14 +26,14 @@ typedef struct circbuf {
     return return_value;						\
   }
 #else
-#define CIRCBUF_CHECK(expression,return_value) (void)0;
+#define CIRCBUF_CHECK(expression,return_value)
 #endif
 
-circbuf* circbuf_create(char* bytes, uint size, uint read_size, FILE* fd);
+circbuf* circbuf_create(char* bytes, size_t size, size_t read_size, FILE* fd);
 void circbuf_free(circbuf* buf);
 int circbuf_print(circbuf* buf);
 char* circbuf_head(circbuf* buf);
-char* circbuf_head_forward(circbuf* buf, uint n);
+char* circbuf_head_forward(circbuf* buf, size_t n);
 
 #ifdef __cplusplus
 }

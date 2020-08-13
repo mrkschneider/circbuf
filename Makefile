@@ -3,7 +3,7 @@ INCLUDEDIRS=-I./include
 LIBDIRS=
 LIBS=
 CFLAGS=-std=c11 -O3 -Wall -Werror -pedantic
-DEBUGFLAGS=-DDEBUG -g3 -pg
+DEBUGFLAGS=-DCIRCBUF_DEBUG -g3
 OPTFLAGS=-Wno-unused
 CC=gcc
 
