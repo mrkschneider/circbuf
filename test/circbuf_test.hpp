@@ -38,8 +38,9 @@ public:
   void test_circbuf_head_error(){
     TS_ASSERT(circbuf_head(c));
 
+#ifdef CIRCBUF_DEBUG
     TS_ASSERT(!circbuf_head(NULL));
-
+#endif
   }
 
   void test_circbuf_head_forward(){
@@ -137,11 +138,10 @@ public:
     char* h = circbuf_head_forward(c,0);
     TS_ASSERT(h);
 
-    h = circbuf_head_forward(c,-1);
-    TS_ASSERT(!h);
-
+#ifdef CIRCBUF_DEBUG
     h = circbuf_head_forward(c,5);
     TS_ASSERT(!h);
+#endif
 
   }
 
@@ -149,6 +149,7 @@ public:
     circbuf* c = circbuf_create(b,size,read_size,fd);
     TS_ASSERT(c);
 
+#ifdef CIRCBUF_DEBUG
     c = circbuf_create(NULL,size,read_size,fd);
     TS_ASSERT(!c);
 
@@ -157,6 +158,7 @@ public:
 
     c = circbuf_create(b,8,read_size,fd);
     TS_ASSERT(!c);
+#endif
   }
 
   void test_circbuf_fprint(){
