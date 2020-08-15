@@ -6,3 +6,9 @@ testrunner
 *~
 *#
 test/tests.cpp
+*.gcda
+*.gcno
+coverage.info
+coverage/
+test_out_debug/
+test_out_opt/

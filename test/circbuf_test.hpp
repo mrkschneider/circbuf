@@ -13,6 +13,7 @@ class CircbufTestSuite : public CxxTest::TestSuite {
 public:
 
   void setUp(){
+    CIRCBUF_DEBUG_LOG_LEVEL = 0;
     fd = fopen("resources/test/bytes.txt","r");
     if(fd == NULL) throw "File read error";
     b = (char*)calloc(size,sizeof(char));
@@ -156,6 +157,13 @@ public:
 
     c = circbuf_create(b,8,read_size,fd);
     TS_ASSERT(!c);
+  }
+
+  void test_circbuf_fprint(){
+    FILE* f = fopen("/dev/null","w");
+    int rc = circbuf_fprint(c,f);
+    fclose(f);
+    TS_ASSERT_EQUALS(0,rc);
   }
 
 };

@@ -4,6 +4,8 @@
 #include <stdarg.h>
 #include <circbuf.h>
 
+int CIRCBUF_DEBUG_LOG_LEVEL = 1;
+
 static int circbuf_fill(circbuf* buf){
   CIRCBUF_CHECK(buf,-1);
 
@@ -64,24 +66,30 @@ void circbuf_free(circbuf* buf){
   free(buf);
 }
 
-int circbuf_print(circbuf* c){
+int circbuf_fprint(circbuf* c, FILE* fd){
   CIRCBUF_CHECK(c,-1);
   size_t size = c->size;
   char* bytes = c->bytes;
   size_t pos = c->pos;
   for(size_t i=0;i<pos;i++){
-    putchar(bytes[i]);
-    putchar(' ');
+    fputc(bytes[i],fd);
+    fputc(' ',fd);
   }
-  putchar('.');
-  putchar(' ');
+  fputc('.',fd);
+  fputc(' ',fd);
   for(size_t i=pos;i<size;i++){
-    putchar(bytes[i]);
-    putchar(' ');
+    fputc(bytes[i],fd);
+    fputc(' ',fd);
   }
-  putchar('\n');
+  fputc('\n',fd);
   return 0;
 }
+
+// LCOV_EXCL_START
+int circbuf_print(circbuf* c){
+  return circbuf_fprint(c,stdout);
+}
+// LCOV_EXCL_STOP
 
 char* circbuf_head(circbuf* buf){
   CIRCBUF_CHECK(buf,NULL);
