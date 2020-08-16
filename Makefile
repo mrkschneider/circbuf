@@ -1,3 +1,4 @@
+include Makefile.env
 PROJNAME=circbuf
 INCLUDEDIRS=include 
 LIBDIRS=
